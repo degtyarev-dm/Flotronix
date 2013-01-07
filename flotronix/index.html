@@ -1,0 +1,104 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+  <head>
+    <title>Monitorix with Flot</title>
+
+    <script type="text/javascript" src="./jsrrd/binaryXHR.js"></script>
+    <script type="text/javascript" src="./jsrrd/rrdFile.js"></script>
+
+    <!-- rrdFlot class needs the following four include files !-->
+    <script type="text/javascript" src="./jsrrd/rrdFlotSupport.js"></script>
+    <script type="text/javascript" src="./jsrrd/rrdFlot.js"></script>
+    <script type="text/javascript" src="./flot/jquery.js"></script>
+    <script type="text/javascript" src="./flot/jquery.flot.js"></script>
+    <script type="text/javascript" src="./flot/jquery.flot.selection.js"></script>
+    <script type="text/javascript" src="./flot/jquery.flot.tooltip.js"></script>
+
+    <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+        <script type="text/javascript">
+ 
+      // fname and rrd_data are the global variable used by all the functions below
+      fname=document.getElementById("input_fname").value;
+      rrd_data=undefined;
+
+      // This function updates the Web Page with the data from the RRD archive header
+      // when a new file is selected
+      function update_fname() {
+
+        var graph_opts={legend: { noColumns:4}};
+        var ds_graph_opts={'Oscilator':{ color: "#ff8000", 
+                                         lines: { show: true, fill: true, fillColor:"#ffff80"} },
+                           'Idle':{ label: 'IdleJobs', color: "#00c0c0", 
+                                    lines: { show: true, fill: true} },
+                           'Running':{color: "#000000",yaxis:2}};
+
+        
+
+        // the rrdFlot object creates and handles the graph
+        var f=new rrdFlot("mygraph",rrd_data,graph_opts,ds_graph_opts);
+      }
+ 
+      // This is the callback function that,
+      // given a binary file object,
+      // verifies that it is a valid RRD archive
+      // and performs the update of the Web page
+      function update_fname_handler(bf) {
+          var i_rrd_data=undefined;
+          try {
+            var i_rrd_data=new RRDFile(bf);            
+          } catch(err) {
+            alert("File "+fname+" is not a valid RRD archive!\n"+err);
+          }
+          if (i_rrd_data!=undefined) {
+            rrd_data=i_rrd_data;
+            update_fname()
+          }
+      }
+
+      // this function is invoked when the RRD file name changes
+      function fname_update() {
+        fname=document.getElementById("input_fname").value;
+        fname="../lib/"+fname+".rrd";
+        try {
+          FetchBinaryURLAsync(fname,update_fname_handler);
+        } catch (err) {
+           alert("Failed loading "+fname+"\n"+err);
+        }
+      }
+
+    </script>
+  </head>
+
+  <body onLoad="fname_update();">
+    <div class="container">
+      <legend><h1>Flotronitx</h1></legend>
+      <div class="row">
+        <div class="span4 offset4">
+              
+              <label>RRD Graphs</label>
+              <div class="input-append">
+              <select name="rrd file" class="span2" onchange="fname_update()" id="input_fname">
+                <option value="system"  selected>System</option>
+                <option value="fs">FileSystem</option>
+                <option value="kern">Kernel</option>
+                <option value="net">Network</option>
+                <option value="int">Int</option>
+                <option value="port">Port</option>
+                <option value="proc">Proc</option>
+                <option value="serv">Serv</option>
+                <option value="user">User</option>
+              </select>
+              <button onclick="fname_update()" class="btn" type="button"><i class="icon-refresh"></i> Update</button>
+            </div>
+            <span class="help-block">Select the item you are interested in.</span>
+        </div>
+      </div>
+
+      <legend>Graphs</legend>
+      <div id="mygraph"></div>
+    </div>
+  </body>
+</html>
