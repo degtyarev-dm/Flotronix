@@ -1,8 +1,8 @@
 Flotronix
 =========
-Flotronix is extension for Monitorix (Monitorix with Flot(javascriptRRD+Flot)).
-Monitorix is a free, open source, lightweight system monitoring tool designed to monitor as many services and system resources as possible.
-JavascriptRRD is a javascript library for reading and interpreting RRD. The javascriptRRD package provides the basic RRD reading libraries, as well as helper libraries to make displaying of RRD files easy with the Flot library.
+Flotronix is extension for Monitorix (Monitorix with Flot(javascriptRRD+Flot)).    
+Monitorix is a free, open source, lightweight system monitoring tool designed to monitor as many services and system resources as possible.    
+JavascriptRRD is a javascript library for reading and interpreting RRD. The javascriptRRD package provides the basic RRD reading libraries, as well as helper libraries to make displaying of RRD files easy with the Flot library.   
 Flot is a Javascript plotting library for jQuery.
 
 ScreenShot
