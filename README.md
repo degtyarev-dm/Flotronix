@@ -25,4 +25,4 @@ Credits
 -------
 Monitorix was created by [Jordi Sanfeliu](http://www.fibranet.cat).   
 Flot was started by Ole Laursen, sponsored by IOLA. Read more at the website: [http://www.flotcharts.org/](http://www.flotcharts.org/).   
-Flotronix was created by [Dmitry Degtyarev](mailto:degtyarev.dm@gmil.com).
+Flotronix was created by [Dmitry Degtyarev](mailto:degtyarev.dm@gmail.com).
