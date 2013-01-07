@@ -12,11 +12,10 @@ How to use
 ----------
 To start use Flotronix you need copy Flotronix folder to web server (like apache), and create folder `lib` like link to folder with Monitorix rrd file.
 For example:
-/var/www/
 
-		/flotronix
-
-		/lib -> /var/lib/monitorix
+	/var/www/
+			/flotronix
+			/lib -> /var/lib/monitorix
 
 License
 -------
