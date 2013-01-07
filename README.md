@@ -4,6 +4,10 @@ Flotronix is extension for Monitorix (Monitorix with Flot).
 Monitorix is a free, open source, lightweight system monitoring tool designed to monitor as many services and system resources as possible.
 Flot is a Javascript plotting library for jQuery.
 
+Screenshot
+----------
+<div style="float: left"><img src="flotronix.png" /></div>
+
 How to use
 ----------
 To start use Flotronix you need copy Flotronix folder to web server (like apache), and create folder `lib` like link to folder with Monitorix rrd file.
